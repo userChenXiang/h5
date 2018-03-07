@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            height: 200px;
+            width: 200px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        window.onload=function(){
+            var box = document.getElementById("box");
+            
+            box.onmousedown = function (event) {
+                // 处理事件兼容
+                event = event || window.event;
+                var pagex = event.pageX || scroll().left + event.clientX;
+                var pagey = event.pageY || scroll().top + event.clientY;
+                // 确定鼠标在元素的位置
+                var x=pagex-box.offsetLeft;
+                var y=pagey-box.offsetTop;
+                document.onmousemove = function (event) {
+                    // 处理事件兼容
+                    event = event || window.event;
+                    var xx = event.pageX || scroll().left + event.clientX;
+                    var yy = event.pageY || scroll().top + event.clientY;
+                    // 鼠标的位置-鼠标在盒子中的位置
+                    xx=xx-x;
+                    yy=yy-y;
+                    box.style.left=xx+'px';
+                    // box.style.top=yy+'px';
+                }
+
+            }
+            // 鼠标松开清除移动事件
+            box.onmouseup=function(){
+                document.onmousemove=null;
+            }
+            function scroll() {
+                return {
+                    "left": window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollTop,
+                    "top": window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+                }
+            }
+        }
+    </script>
+</body>
+</html>

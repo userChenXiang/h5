@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0
+        }
+        img{
+            vertical-align: top;
+        }
+        #middle{
+            padding-bottom: 10px;
+        }
+        #bottom{
+             margin: 0 auto;
+            width: 1000px;
+           
+        }
+        #asider-left{
+            position: absolute;
+            left: 10px;
+            top:250px;
+        }
+        #asider-right{
+            position: absolute;
+            right: 10px;
+            top:250px;
+        }
+        #fixed{
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            border:1px solid #ccc;
+            display: none;
+        }
+        .fixed{
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="top">
+        <img src="img/top.png" alt="">
+    </div>
+    <div id="middle">
+        <img src="img/nav.png" alt="">
+    </div>
+    <div id="bottom">
+        <img src="img/main.png" alt="">
+    </div>
+    <div id="asider-left">
+        <img src="img/aside.jpg" alt="">
+    </div>
+    <div id="asider-right">
+        <img src="img/aside.jpg" alt="">
+    </div>
+    <div id="fixed">
+        <img src="img/Top.jpg" alt="">
+    </div>
+    <script>
+        window.onload=function(){
+            // 获取相关元素
+            var topDiv=document.getElementById('top');//顶部
+            var hieghtScroll=topDiv.offsetHeight;
+            var nav=document.getElementById('middle');//导航
+            var bottomDiv=document.getElementById('bottom')
+            // 左右边的广告
+            var asiderLeft=document.getElementById("asider-left");
+            var asiderRight=document.getElementById("asider-right");
+            // 小火箭
+            var fixed=document.getElementById('fixed');
+            window.onscroll=function(){
+                var top=scroll();
+                if(top.top>hieghtScroll){
+                    nav.className+=" fixed";
+                    bottomDiv.style.paddingTop=nav.offsetHeight+'px';
+                }else{
+                    nav.className = "";  
+                    bottomDiv.style.paddingTop =0;
+                }
+                // 获取页面滚动的距离
+                var val = scroll().top;
+                animateTop(asiderLeft, val+250);
+                animateTop(asiderRight, val+250);
+                // 小火箭的功能
+                if(val>200){
+                    fixed.style.display='block';
+                }else{
+                    fixed.style.display = 'none';                    
+                }
+                // 每次移动时都给leader赋值 模拟滚动条滚动的距离
+                leader=val;
+                // console.log(leader)
+            }
+             var target = 0;//记录目标距离 
+            var leader = 0;//记录自身距离
+            var timer = null;
+            fixed.onclick = function () {
+                clearInterval(timer)
+                timer = setInterval(function () {
+                    var step = (target - leader) / 10;
+                    step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                    leader = leader + step;
+                    window.scrollTo(0, leader);
+                    if (leader === 0) {
+                        clearInterval(timer);
+                    }
+                    // console.log(2)
+                }, 25)
+            }
+            // 处理scrollTop兼容
+            function scroll(){
+                return {
+                     "top": document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset,
+                    "left": document.documentElement.scrollLeft || document.body.scrollLeft || window.pageXOffset
+                }
+            }
+            // 动画
+            function animateTop(ele,target){
+                // 要用定时器先清除定时器
+                clearInterval(ele.timer);
+                ele.timer=setInterval(function(){
+                    // 获取步长
+                    var step=(target-ele.offsetTop)/10;
+                    // 对步长进行处理
+                    step=step>0?Math.ceil(step):Math.floor(step);
+                    ele.style.top=ele.offsetTop+step+'px';
+                    // 跳出定时器
+                    if( Math.abs(target - ele.offsetTop)<=Math.abs(step)){
+                        ele.style.top=target+'px';
+                        clearInterval(ele.timer);
+                    }
+                    // console.log(1)
+                },25)
+            }
+        }
+    </script>
+</body>
+</html>

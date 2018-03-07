@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+        img {
+            vertical-align: top;
+        }
+        .main {
+            margin: 0 auto;
+            width: 1000px;
+            margin-top: 10px;
+
+        }
+        .fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+             /* z-index:9999; */
+        }
+    </style>
+</head>
+<body>
+    <div id="top" class="top">
+        <img src="img/top.png" alt="">
+    </div>
+    <div class="middle" id="Q-nav1">
+        <img src="img/nav.png" alt="">
+    </div>
+    <div id="main" class="main">
+        <img src="img/main.png" alt="">
+    </div>
+    
+    <script>
+         window.onload = function () {
+               var topDiv = document.getElementById("top");
+             var height = topDiv.offsetHeight;
+             var middle = document.getElementById("Q-nav1");
+             var main = document.getElementById("main");
+             function scroll(){
+                 return{
+                     "top":document.documentElement.scrollTop||document.body.scrollTop||window.pageYOffset,
+                     "left":document.documentElement.scrollLeft||document.body.scrollLeft||window.pageXOffset
+                 }
+             }
+             window.onscroll=function(){
+                if(scroll().top>height){
+                    middle.className+=" fixed";
+                    main.style.paddingTop=middle.offsetHeight+'px';
+                }else{
+                    middle.className = "middle";
+                    main.style.paddingTop = 0;                    
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

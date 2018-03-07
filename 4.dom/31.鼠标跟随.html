@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img{
+            width: 100px;
+            border: 2px solid black;
+            padding: 5px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body style="height:2000px">
+    <img src="img/img.jpg" style="border: 2px solid black;" alt="">
+    <script>
+       var img=document.getElementsByTagName('img')[0];
+       var timer=null;
+       var targetY = 0;
+        var leaderY = 0;
+        var targetX = 0;
+        var leaderX = 0;
+    //点击页面任何地方 图片就跟随
+    document.onclick=function(event){
+        // 处理事件兼容
+        event=event||window.event;
+        // 获取pageY和pageX处理兼容问题
+        // 鼠标在页面的位置=被卷去的部分+可视区域；
+        var pageX=event.pageX||scroll().left+event.clientX;
+        var pageY= event.pageY||scroll().top+event.clientY;
+        targetX=pageX-img.offsetWidth/2;
+        targetY=pageY-img.offsetHeight/2;
+        // 要用定时器先清除定时器
+        clearInterval(timer);
+        timer=setInterval(function(){
+            // 获取步长
+            var stepX=(targetX-leaderX)/10;
+            // 二次处理步长
+            stepX=stepX>0?Math.ceil(stepX):Math.floor(stepX);
+            // 赋值
+            leaderX=leaderX+stepX;
+            img.style.left=leaderX+stepX+"px";
+
+            var stepY=(targetY-leaderY)/10;
+            stepY=stepY>0?Math.ceil(stepY):Math.floor(stepY);
+            leaderY=leaderY+stepY;
+            img.style.top = leaderY + stepY + "px";            
+            // 清除定时器
+            if(Math.abs(targetX-leaderX)<=Math.abs(stepX)&& Math.abs(targetY - leaderY) <= Math.abs(stepY)){
+                img.style.left=targetX+'px';
+                img.style.top=targetY+'px';
+            }
+        },20)
+    }
+     function scroll() {
+            return {
+                "left": window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollTop,
+                "top": window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+            }
+        }
+    </script>
+</body>
+</html>

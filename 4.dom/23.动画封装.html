@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color:pink;
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+         #box1{
+            width: 100px;
+            height: 100px;
+            background-color:yellow;
+            position: absolute;
+            left: 0;
+            top:110px;
+        }
+        #father{
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <button>运动到200</button>
+    <button>运动到400</button>
+    <div id="father">
+        <div id="box"></div>
+        <div id="box1"></div>
+    </div>
+    
+    <script>
+        var btnArr=document.getElementsByTagName('button');
+        var div=document.getElementById('box');
+        var div1=document.getElementById('box1');
+        btnArr[0].onclick=function(){
+            animate(div,200);
+            animate(box1, 200)
+        }
+        btnArr[1].onclick=function(){
+            animate(div, 400)
+            animate(box1, 400)
+        }
+        // 封装定时器动画方法
+        function animate(ele,target){
+            // 要用定时器先清除定时器
+            clearInterval(ele.timer);
+            ele.timer=setInterval(function(){
+                // 要求盒子既可以向左移动也可以向右移动
+                // 如果目标值大于当前值取正数，如果目标值小于当前值就取负数
+                var speed = target > ele.offsetLeft ? 10 : -10;
+                // 在执行之前获取目标值与当前值之差
+                var val=target-ele.offsetLeft;
+                // 给盒子赋值距离单位
+                ele.style.left=ele.offsetLeft+speed+'px';
+                     // 目标值和当前值之差如果小于步长,那么就不能前进
+                // 因为步长有正负数所以要用绝对值
+                if (Math.abs(val) <= Math.abs(speed)) {
+                    ele.style.left = target+'px';
+                    clearInterval(ele.timer);
+                }
+            },30)
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .img{
+            border: 1px solid #ccc;
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            display: none;
+        }
+        div{
+            width: 300px;
+            margin: 0 auto;
+            font: 700 20px/20px '微软雅黑';
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            // 获取事件源
+            var img=document.getElementsByTagName('img')[0];
+          
+            // 页面滚动事件
+            window.onscroll=function(){
+                // 定义scrollTop
+                // 记录页面滚动的距离
+                var val = scroll().top;
+                if (val > 200) {
+                    img.style.display = 'block';
+                }else{
+                    img.style.display = 'none';  
+                }
+                //  //每次移动滚动条的时候都给leader赋值，模拟leader获取距离顶部的距离
+                leader=scroll().top;
+            }
+                  var timer = null;
+                  var target=0;//目标距离
+                  var leader=0;//自身距离
+                img.onclick=function(){
+                   // 技术点 返回要用scrollTo
+                    // window.scrollTo(0,0);
+                    //要用定时器，先清定时器
+                    clearInterval(timer);
+                    timer = setInterval(function () {
+                        //获取步长
+                        var step = (target - leader) / 10;
+                        //二次处理步长
+                        step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                        leader = leader + step;
+                        //显示区域移动
+                        window.scrollTo(0, leader);
+                        //清除定时器
+                        if (leader === 0) {
+                            clearInterval(timer);
+                        }
+                    },10)
+                }
+                function scroll() {
+                    return {
+                        "top": document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
+                    }
+                }
+            
+         }
+           
+    </script>
+</head>
+<body>
+    <img class="img" src="img/Top.jpg" alt="">
+    <div>我是最顶端</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    <div>良禽择木而栖，贤臣择主而事</div>
+    
+</body>
+</html>

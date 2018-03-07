@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .top-banner{
+            background-color: pink;
+            /* width: 1366px;
+            height: 100px; */
+        }
+        .w{
+            width: 1190px;
+            height: 200px;
+            margin: 0 auto;
+            background-color: blueviolet;
+            position: relative;
+        }
+        a{
+            text-decoration: none;
+            color: #000;
+            display: inline-block;
+            width:20px;
+            height: 20px;
+            background-color: #ccc;
+            text-align: center;
+            line-height: 20px;
+            position: absolute;
+            right: 0;top:0;
+        }
+        .active{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-banner" id="advertising">
+        <div class="w" >
+            <img src="" alt="" >
+            <a href="#" id="btn">x</a>
+        </div>
+    </div>
+    <script>
+        //window.onload 页面全部加载完毕时才执行里面的代码
+        window.onload=function(){
+            var btn=document.getElementById('btn');//x按钮
+            var advertising=document.getElementById('advertising');
+            btn.onclick=function(){
+                
+                 advertising.className = 'active'
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,html,ul,ol,li{
+            margin: 0;
+            padding: 0;
+        }
+        body,html{
+              width: 100%;
+            height: 100%;
+        }
+        ul{
+            list-style: none;
+              width: 100%;
+            height: 100%;
+        }
+        ul li{
+            width: 100%;
+            height: 100%;
+        }
+        ol{
+            list-style: none;
+            position: fixed;
+            left: 20px;
+            top: 200px;
+        }
+        ol li{
+            width: 50px;
+            height: 50px;
+             border: 1px solid #ccc;
+             text-align: center;
+             line-height: 50px;
+        }
+        .current{
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>帽子区域</li>
+        <li>围巾区域</li>
+        <li>衣服区域</li>
+        <li>裤子区域</li>
+        <li>鞋子区域</li>
+    </ul>
+    <ol>
+        <li>帽子</li>
+        <li>围巾</li>
+        <li>衣服</li>
+        <li>裤子</li>
+        <li>鞋子</li>
+    </ol>
+    <script>
+        var colorArr=['yellow', 'green', 'blue', 'pink', 'red'];
+        var ul=document.getElementsByTagName('ul')[0];
+        var ol=document.getElementsByTagName('ol')[0];
+        var ulLiArr=ul.children;
+        var olLiArr= ol.children;
+         var target = 0;//目标距离
+            var leader = 0;//自身距离
+            var timer = null;
+        // 给ul和ol中的li 添加颜色
+        for(var i=0;i<colorArr.length;i++){
+            olLiArr[i].index=i;
+            ulLiArr[i].style.background=colorArr[i];
+            olLiArr[i].style.background=colorArr[i];
+            //每个ol中的li添加点击事件
+            olLiArr[i].onclick=function(){
+               target=ulLiArr[this.index].offsetTop;
+               animate();
+               for(var j=0;j<olLiArr.length;j++){
+                   olLiArr[j].className='';
+               }
+               this.className="current";
+            }    
+        }
+        // 记录鼠标滚动的距离 
+        window.onscroll=function(){
+            leader=scroll().top;
+        }
+        function scroll(){
+            return {
+                "left":window.pageXOffset||document.documentElement.scrollLeft||document.body.scrollTop,
+                "top":window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop
+            }
+        }
+       
+        function animate(){
+            clearInterval(timer);
+            timer=setInterval(function(){
+                var step=(target-leader)/10;
+                step=step>0?Math.ceil(step):Math.floor(step);
+                // 屏幕滑动
+                leader=leader+step;
+                window.scrollTo(0,leader);
+                if(Math.abs(target - leader)<=Math.abs(step)){
+                    window.scrollTo(0,target);
+                    clearInterval(timer);
+                }
+            },25)
+        }
+    </script>
+</body>
+</html>

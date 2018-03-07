@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box{
+            width: 1100px;
+            margin: 100px auto;
+           /* font-size: 0; */
+           /* overflow: hidden; */
+        }
+        img{
+            width: 200px;
+            height: 100px;
+            border: none;
+            /* border: 1px solid yellow; */
+        }
+        body{
+            background: url('img/1.jpg');
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img src="img/1.jpg" alt="">
+        <img src="img/2.jpg" alt="">
+        <img src="img/3.jpg" alt="">
+        <img src="img/4.jpg" alt="">
+        <img src="img/5.jpg" alt="">
+    </div>
+    <script>
+        var box=document.getElementsByTagName('div')[0];
+        var imgArr=box.children;
+        var body=document.getElementsByTagName('body')[0];
+        // 给每一个Img添加点击事件
+        for(var i=0;i<imgArr.length;i++){
+            imgArr[i].index=i;
+            imgArr[i].onclick=function(){
+        // this.parentNode.parentNode.style.backgroundImage='url('+this.src+')';
+        //点击那一个img给body修改对应的背景图片
+        body.style.backgroundImage="url(img/"+(this.index+1)+".jpg)"
+            }
+        }
+
+        //2.添加事件
+        
+    </script>
+</body>
+</html>

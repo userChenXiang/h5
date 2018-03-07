@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        button{
+            width: 50px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .active{
+            background-color: yellow
+        }
+    </style>
+</head>
+<body>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+</body>
+    <script>
+        var butArr=document.getElementsByTagName('button');
+        for(var i=0;i<butArr.length;i++){
+            //给每一个盒子设置一个属性,存储他的索引
+            //方法有两种
+            butArr[i].setAttribute('title',i);
+            // butArr[i].index=i;
+            butArr[i].onclick=function(){
+                for(var j=0;j<butArr.length;j++){
+                    //使用 排他思想,干掉所有人 剩下我自己 
+                    //排他思想都是和for循环连用
+                    butArr[j].className = '';
+                }
+                 this.className='active';
+                 //弹出盒子自身的索引
+                 alert(this.getAttribute('title'))
+                // alert(this.index)
+            }
+           
+        }
+    </script>
+</html>

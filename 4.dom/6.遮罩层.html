@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .cover{
+            position: absolute;
+            left: 0;right: 0;
+            top: 0;bottom: 0;
+            background:rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">提交</button>
+    <script>
+        // window.onload=function(){
+            var btn=document.getElementById('btn');
+          var flag=true;
+            btn.addEventListener('click',function(){
+                if(flag){
+                       var cover = document.createElement('div');
+                    cover.className = 'cover'; 
+                     document.body.appendChild(cover);
+                    flag=false;
+                    console.log(flag);
+                    console.log(cover);
+                    console.log(cover.offsetHeight);
+                    console.log(cover.offsetWidth);
+                }
+            })
+            
+           
+           
+        // }
+    </script>
+</body>
+</html>

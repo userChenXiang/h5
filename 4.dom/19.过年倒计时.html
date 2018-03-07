@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #content{
+            width: 800px;
+            height: 300px;
+            font:700 18px/300px '微软雅黑';
+            text-align: center;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        
+    </div>
+    <script>
+       window.onload=function(){
+            var timer = setInterval(fn, 1000);
+           // 设置fn函数
+           function fn() {
+               var yearTime = new Date('2018/02/16/00:00:00').getTime();
+               var nowTime = new Date().valueOf();
+               // 过年的时间减现在的时间算出毫秒值
+               var ms = yearTime - nowTime;
+               //计算天 总的毫秒数转化成天 算出剩余的天数
+               var day = parseInt(ms / 1000 / 60 / 60 / 24);
+               day=day<10?"0"+day:day;
+               // 计算时 算出剩余的小时数
+               var hours = parseInt(ms / 1000 / 60 / 60 % 24);
+                hours=hours < 10 ? "0" + hours : hours;
+               // 计算分   算出剩余的分钟数
+               var min = parseInt(ms / 1000 / 60 % 60);
+                min= min < 10 ? "0" + min : min;
+               //计算秒    算出剩余的秒数
+               var second = parseInt(ms / 1000 % 60);
+                second=second< 10 ? "0" + second : second;
+               // console.log(year);
+
+               var content = document.getElementById('content');
+               content.innerHTML = "距离2018年02月16时00时00分00秒过年倒计时为" + day + "天" + hours + "时" + min + "分" + second + "秒";
+           }
+       }
+        
+        
+        
+        
+    </script>
+</body>
+</html>

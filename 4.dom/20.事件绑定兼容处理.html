@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">赋诗</button>
+    <script>
+        var btn=document.getElementById('btn');
+        // btn.onclick=function(){
+        //     console.log('秦时明月汉时光,万里长征人未还');
+        // }
+       
+                EventListener={
+                addEvent:function(ele,fn,event){
+                    // 如果是谷歌，火狐，IE9+用这种方式
+                    if(ele["addEventListener"]){
+                        ele["addEventListener"](event,fn);
+                        // 如果是IE678用attachEvent方式
+                    }else if(ele["attachEvent"]){
+                        ele["attachEvent"]('on'+event,fn);
+                    }else{
+                        ele['on'+event]=fn;
+                    }
+                },
+                removeEvent:function(ele,fn,event){
+                    if(ele["removeEventListener"]){
+                        ele["removeEventListener"](event,fn);
+                    }else if(ele["detachEvent"]){
+                        ele["detachEvent"]("on"+event,fn);
+                    }else{
+                        ele["on"+event]=null;
+                    }
+                }
+            }
+        
+       
+        function fn1(){
+            console.log('秦时明月汉时光,万里长征人未还');
+        }
+        function fn2(){
+            console.log('但使龙城飞将在,不教胡马度阴山');
+        }
+
+        EventListener.addEvent(btn,fn1,'click');
+        EventListener.addEvent(btn,fn2,'click');
+        // EventListener.removeEvent(btn,fn1,'click');
+    </script>
+</body>
+</html>

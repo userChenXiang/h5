@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #box{
+            /* margin: 100px; */
+            width: 100px;
+            height: 100px;
+            border: 2px solid red;
+            padding: 10px;
+            background-color: pink;
+            position: absolute;
+            left:100px;
+            top: 10px;
+        }
+        #father{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div id="father">
+        <div id="box"></div>
+    </div>
+    
+    <script>
+        var box=document.getElementById('box');
+        // offsetWidth和offsetHeight包括content+padding+border       
+        // offsetHeight和offsetHeight包括content+padding+border       
+        console.log(box.offsetWidth)
+        console.log(box.offsetHeight)
+
+        // offsetLeft检测距离父盒子有定位的左测距离
+        // offsetTop检测距离父盒子有定位的上测距离        
+        console.log(box.offsetLeft)
+        console.log(box.offsetTop)
+       
+        
+    </script>
+</body>
+</html>

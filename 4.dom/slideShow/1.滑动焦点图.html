@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box{
+            width: 490px;
+            height: 170px;
+            padding: 5px; 
+             border: 1px solid #ccc;
+            margin:100px auto;
+        }
+        .inner{
+            width: 490px;
+            height: 170px;
+            overflow: hidden;
+            position:relative;
+        }
+        ul{
+            width: 500%;
+            list-style: none;
+            position: absolute;
+            left: 0;
+        }
+        li{
+            float: left;
+        }
+        .square{
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+        span{
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-color: #fff;
+            text-align: center;
+            line-height: 16px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            margin: 3px;
+        }
+        .current{
+            background-color: darkorange;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="inner" id="inner">
+             <ul >
+                <li>
+                    <!-- <a href="#"> -->
+                        <img src="../slideImg/01.jpg" alt="">
+                    <!-- </a> -->
+                </li>
+                <li>
+                    <!-- <a href="#"> -->
+                        <img src="../slideImg/02.jpg" alt="">
+                    <!-- </a> -->
+                </li>
+                <li>
+                    <!-- <a href="#"> -->
+                        <img src="../slideImg/03.jpg" alt="">
+                    <!-- </a> -->
+                </li>
+                <li>
+                    <!-- <a href="#"> -->
+                        <img src="../slideImg/04.jpg" alt="">
+                    <!-- </a> -->
+                </li>
+                <li>
+                    <!-- <a href="#"> -->
+                        <img src="../slideImg/05.jpg" alt="">
+                    <!-- </a> -->
+                </li>
+            </ul>
+            <div class="square" id="square">
+                <span class="current">1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+            </div>
+        </div>
+    </div>
+    <script>
+    // 需求:鼠标放到小方块上，上面的图片(ul向左移动指定的个数图片的宽)
+    // 思路 绑定事件 点亮盒子 移动ul
+    // 步骤
+    // 1.获取事件源和相关元素
+    // 2.绑定事件和书写事件驱动程序循环绑定(for 循环绑定)
+    // 3.点亮盒子
+    // 4.移动ul位置（向左移动,给定目标为-值,放到第n个小方块上向左n-1个图片的宽）
+    
+    // 1.获取事件源和相关元素
+    var inner=document.getElementById('inner');
+    var imgWidth=inner.offsetWidth;
+    var ul=inner.children[0];
+    var spanArr=inner.children[1].children;
+    // 2.绑定事件和书写事件驱动程序循环绑定(for 循环绑定)
+    for(var i=0;i<spanArr.length;i++){
+        // 自定义属性用于切换图片
+        spanArr[i].index=i;
+        // 给每一个span绑定事件
+        spanArr[i].onmouseenter=function(){
+            //3.点亮盒子
+            for(var j=0;j<spanArr.length;j++){
+                spanArr[j].className='';
+            }
+            this.className='current';
+            // 4.移动ul位置（向左移动,给定目标为-值）
+            animate(ul,-this.index*imgWidth)
+        }
+         function animate(ele, target) {
+            // 要用定时器先清除定时器
+            clearInterval(ele.timer);
+             // 如果目标值大于当前值取正数，如果目标值小于当前值就取负数
+             var speed = target > ele.offsetLeft ? 10 : -10;
+            ele.timer = setInterval(function () {
+                // 要求盒子既可以向左移动也可以向右移动
+               
+                // 在执行之前获取目标值与当前值之差
+                var val = target - ele.offsetLeft;
+                // 给盒子赋值距离单位
+                ele.style.left = ele.offsetLeft + speed + 'px';
+                // 目标值和当前值之差如果小于步长,那么就不能前进
+                // 因为步长有正负数所以要用绝对值
+                if (Math.abs(val) < Math.abs(speed)) {
+                    ele.style.left = target + 'px';
+                    clearInterval(ele.timer);
+                }
+            }, 10)
+        }
+    }
+    
+    </script>
+</body>
+</html>

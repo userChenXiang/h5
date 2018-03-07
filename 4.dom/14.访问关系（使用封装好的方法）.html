@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li {
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+            margin: 10px;
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li class="box1"></li>
+        <li id="box2"></li>
+        <li id="box3"></li>
+        <li class="box4"></li>
+        <li class="box5"></li>
+    </ul>
+    <script src="tools.js"></script>
+    <script>
+      var box3=document.getElementById('box3');
+      var ul=document.getElementsByTagName('ul')[0];
+      //获取他上一个兄弟元素并且修改他的背景色
+       getPreviousNode(box3).style.background='red';
+       //设置他下一个兄弟元素
+       getNextNode(box3).style.background='black';
+       //他第一个哥哥
+       getFirstNode(ul).style.background='blue';
+       //获取指定索引值
+       getEleOfIndex(box3,3).style.background='orange';
+       getEleOfIndex(box3,4).style.background='orange';
+    
+    </script>
+</body>
+
+</html>

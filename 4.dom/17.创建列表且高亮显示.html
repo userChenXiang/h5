@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .active{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <button>创建列表</button>
+    <ul></ul>
+    <script>
+        window.onload=function(){
+            var ul=document.getElementsByTagName('ul')[0];
+            var btn=document.getElementsByTagName('button')[0];
+            btn.onclick=function(){
+                var arr=['西施','王昭君','貂蝉','杨贵妃'];
+                for(var i=0;i<arr.length;i++){
+                    //创建li 
+                    var li=document.createElement('li');
+                    //把li追加到ul中
+                    ul.appendChild(li);
+                    //给li添加内容
+                    li.innerHTML=arr[i];
+                    console.log(li);
+                     //获取所有的li;
+                    var liArr = ul.children;
+                    //给每一个li添加鼠标移上事件
+                    for (var j = 0; j < liArr.length; j++) {
+                        liArr[j].onmouseenter = function () {
+                            //使用排他思想
+                            for (var k = 0; k < liArr.length; k++) {
+                                liArr[k].style.backgroundColor = '';
+                            }
+                            this.style.backgroundColor = 'red';
+                        }
+                        liArr[j].onmouseleave = function () {
+                            //使用排他思想
+                            for (var k = 0; k < liArr.length; k++) {
+                                this.style.backgroundColor = '';
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

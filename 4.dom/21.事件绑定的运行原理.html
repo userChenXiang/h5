@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">赋诗</button>
+    <script>
+        var btn=document.getElementById('btn');
+        // btn.onclick=function(){
+        //     console.log('忽如一夜春风来,千树万树梨花开');
+        // }
+        function fn(ele,event,fn){
+            //判断位置要注意：如果进入绑定事件本身，那么该事件已经被绑定了
+        //所以获取旧的事件必须在新的事件绑定之前
+            var oldEvent=ele['on'+event];
+             //不能直接执行函数，因为我们还不知道以前有没有绑定过同样的事件
+            //进行判断，如果以前有过绑定事件，那么把以前的执行完毕在执行现在的事件，如果没有就直接执行
+            //如果没有被定义过事件该事件源的该事件属性应该是null对应的boolean值是false
+            //如果已经定义过事件该事件源的该事件属性应该是function本身对应的boolean值是true
+            ele['on'+event]=function(){
+                if(oldEvent){
+                     //因为oldEvent本身他就是函数本身，那么后面加一个();就是执行函数
+                    oldEvent();
+                    fn();
+                }else{
+                    fn();
+                }
+            }
+        }
+        function fn1(){
+            console.log('大漠孤烟直,黄河落日圆')
+        }
+        function fn2(){
+            console.log('北风卷地白草折,胡天八月即飞雪')
+        }
+        fn(btn,'mouseenter',fn1);
+        fn(btn,'click',fn2);
+    </script>
+</body>
+</html>

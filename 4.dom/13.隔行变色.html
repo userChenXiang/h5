@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <style>
+         ul {
+            width: 1210px;
+            margin: 100px auto;
+        }
+        li {
+            height: 34px;
+            cursor: pointer;
+            font: 500 16px/34px "simsun";
+        }
+     </style>
+
+</head>
+<body>
+    <ul>
+        <li>北京股指 3063.31-22.18 (-0.72%)</li>
+        <li>上海股指 3063.31-22.18 (-0.72%)</li>
+        <li>广州股指 3063.31-22.18 (-0.72%)</li>
+        <li>深圳股指 3063.31-22.18 (-0.72%)</li>
+        <li>北京股指 3063.31-22.18 (-0.72%)</li>
+        <li>上海股指 3063.31-22.18 (-0.72%)</li>
+        <li>广州股指 3063.31-22.18 (-0.72%)</li>
+        <li>深圳股指 3063.31-22.18 (-0.72%)</li>
+    </ul>
+    <script>
+        //简单版本
+        // var ul=document.getElementsByTagName('ul')[0];
+        // console.log(ul);
+        // var liArr=ul.children;
+        // console.log(liArr);
+        // for(var i=0;i<liArr.length;i++){
+        //     if (i%2===0) {
+        //         liArr[i].style.backgroundColor='red';
+        //     }
+        // }
+        //复杂版本
+       var ul = document.getElementsByTagName('ul')[0];
+       var liArr=ul.childNodes;
+       var arr=[];
+       for(var i=0;i<liArr.length;i++){
+           if(liArr[i].nodeType===1){
+               arr.push(liArr[i])
+           }
+       }
+       for(var j=0;j<arr.length;j++){
+           if(j%2!==0){
+               arr[j].style.background='yellow';
+           }
+       }
+    
+    </script>
+</body>
+</html>

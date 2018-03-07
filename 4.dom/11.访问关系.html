@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li{
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+            margin: 10px;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="box1"></li>
+        <li id="box2"></li>
+        <li id="box3"></li>
+        <li class="box4"></li>
+        <li class="box5"></li>
+    </ul>
+    <script>
+        var box3=document.getElementById('box3');
+        //获取父元素
+        console.log(box2)
+        box2.parentNode.style.backgroundColor='blue';
+        //设置他哥哥元素
+        //IE678支持这种写法 其他浏览器不支持这种写法
+        // box2.previousSibling.style.backgroundColor='yellow';
+        //火狐谷歌支持这种写法，IE678版本不支持ELement写法
+        //box2.previousElementSibling.style.backgroundColor = 'yellow';
+        //兼容处理方法(兄弟节点)
+        var per=box3.previousElementSibling||box3.previousSibling;
+         per.style.backgroundColor='yellow';  
+        var next=box3.nextElementSibling||box3.nextSibling;
+        next.style.backgroundColor='green';
+        //兼容处理(第一个和最后一个节点)
+        var first=box3.parentNode.firstElementChild||box3.parentNode.firstChild;
+        first.style.backgroundColor='orange';
+        var last = box3.parentNode.lastElementChild||box3.parentNode.lastChild;
+        last.style.backgroundColor='black';
+        //设置所有子节点
+        var children=box3.parentNode.children;
+        console.log(children)
+        for(var i=0;i<children.length;i++){
+            children[i].style.backgroundColor='black';
+        }
+        children[2].style.backgroundColor='red';
+    </script>
+</body>
+</html>

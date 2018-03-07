@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        input{
+            width: 20px;
+            height: 20px;
+        }
+        thead{
+            background-color: aquamarine
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <table border="1">
+            <thead>
+                <th>
+                    <input type="checkbox" id="checkboxHead">
+                </th>
+                <th>菜名</th>
+                <th>厨师</th>
+            </thead>
+            <tbody id="tbody">
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>红烧肉</td>
+                    <td>陈翔</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>酸菜鱼</td>
+                    <td>陈翔</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>水煮鱼</td>
+                    <td>陈翔</td>
+                </tr>
+            </tbody>
+           
+        </table>
+    </div>
+    <script>
+        window.onload=function(){
+            //1.上面的input的 checked 是true 下面所有的input都是true;否则是false;
+            //上面的input
+            var topInput=document.getElementById('checkboxHead');
+            //下面所有的input
+            var tbody=document.getElementById('tbody');
+            var bottomInputArr=tbody.getElementsByTagName('input');
+           //给上面的input添加点击事件
+           topInput.onclick=function(){
+            //    if(this.checked){
+            //        for(var i=0;i<bottomInputArr.length;i++){
+            //            bottomInputArr[i].checked=true;
+            //        }
+            //    }else{
+            //         for (var i = 0; i < bottomInputArr.length; i++) {
+            //            bottomInputArr[i].checked = false;
+            //        }
+            //    }
+            //优化
+                for(var i=0;i<bottomInputArr.length;i++){
+                    bottomInputArr[i].checked=this.checked;
+                }
+           }
+            
+            //给每一个input添加点击事件
+            for(var i=0;i<bottomInputArr.length;i++){
+                bottomInputArr[i].onclick=function(){
+                    //开闭原则
+                    var bool=true;
+                    for(var j=0;j<bottomInputArr.length;j++){
+                        if(bottomInputArr[j].checked===false){
+                            bool=false;
+                        }
+                         
+                    }
+                   topInput.checked = bool;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

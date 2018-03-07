@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">hello world</div>
+</body>
+<script>
+        //获得元素节点
+        var box=document.getElementById('box');
+        //获得元素属性节点
+        var attr=box.getAttributeNode('id');
+        //获得元素文本节点
+        var txt=box.firstChild;
+        console.log(box);
+        console.log(attr);
+        console.log(txt);
+        //nodeType
+        console.log(box.nodeType);
+        console.log(attr.nodeType);
+        console.log(txt.nodeType);
+        //nodeName
+        console.log(box.nodeName);
+        console.log(attr.nodeName);
+        console.log(txt.nodeName);
+        //nodeValye
+        console.log(box.nodeValue);
+        console.log(attr.nodeValue);
+        console.log(txt.nodeValue);
+</script>
+</html>

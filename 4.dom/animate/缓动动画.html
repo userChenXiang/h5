@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0
+        }
+        div{
+            position:relative;;
+            width: 100px;
+            height: 100px;
+            background: blueviolet;
+            left: 0;
+            top:0
+        }
+    </style>
+</head>
+<body>
+    <button>运动到600</button>
+    <button>运动到200</button>
+    <div></div>
+    <script>
+        var btn=document.getElementsByTagName('button')[0];
+        var btn1=document.getElementsByTagName('button')[1];
+        var div=document.getElementsByTagName('div')[0];
+        var timer=null;
+       btn.onclick=function(){
+            animate(div,600);
+       }
+       btn1.onclick=function(){
+           animate(div,200)
+       }
+        //  封装缓动动画
+       function animate(ele,target){
+            //要用定时器先清除定时器
+            clearInterval(ele.timer);
+            //设置定时器
+            ele.timer=setInterval(function(){
+                // 步长: (目标距离-盒子自身的位置)/10
+                var step=(target-ele.offsetLeft)/10;
+                // 最后10像素的时候是1像素1像素的往目标距离移动，知道到达目标距离
+                // 对最后10像素进行处理(大于0向上取整，小于0向下取整)
+                step=step>0?Math.ceil(step):Math.floor(step);
+                // 盒子未来的距离=盒子自身+步长+‘px’;
+                ele.style.left=ele.offsetLeft+step+'px';
+                // 跳出条件并且清除定时器
+
+                if( Math.abs(target-ele.offsetLeft)<=Math.abs(step) ){
+                    ele.style.left=target+'px';
+                    clearInterval(ele.timer);
+                }
+                // 检测定时器有没有清除
+                console.log(1)
+            },30) 
+       }
+    </script>
+</body>
+</html>
