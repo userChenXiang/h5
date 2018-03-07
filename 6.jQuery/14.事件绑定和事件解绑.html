@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(window).on("click",{"name":"陈翔","age":23},function(ev){
+            alert(ev.data.name+ev.data.age)
+        })
+        $(".box").bind("click",function(){
+            alert('点击了')
+        })
+        $(".box").unbind('click');
+        //  用什么方式绑定的就用什么方式解绑
+        // bind()绑定 用unbind()解绑
+        // on()绑定  用off()解绑
+        function cli(){
+            alert('鼠标移入了')
+        }
+        
+        $(".box").on("mouseenter",cli)
+        $('.box').off('mouseenter',cli)
+    </script>
+</body>
+</html>

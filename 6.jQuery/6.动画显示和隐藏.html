@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: yellowgreen;
+            display: none;
+        }
+        .aninmate{
+            
+            transition: 2s all;
+        }
+    </style>
+</head>
+<body>
+    <button>显示</button>
+    <button>隐藏</button>
+    <button>切换</button>
+    <div></div>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+       $("button").eq(0).click(function(){
+        //    第一种使用方法
+        //    $("div").show()
+        // 第二种使用方法 毫秒值
+            // 改变的是宽，高，透明度，display
+            // $("div").show(2000)
+        // 第三种  传递字符串 slow fast normal
+            $("div").show("slow")
+        // 第四种 毫秒值 回调函数  最常用
+            $("div").show(2000,function(){
+                alert("动画执行完毕")
+            })
+       })
+         $("button").eq(1).click(function () {
+                //    第一种使用方法
+                //    $("div").hide()
+                // 第二种使用方法 毫秒值
+                // 改变的是宽，高，透明度，display
+                // $("div").hide(2000)
+                // 第三种  传递字符串 slow fast normal
+                // $("div").hide("slow")
+                // 第四种 毫秒值 回调函数  最常用
+                $("div").hide(2000, function () {
+                    alert("动画执行完毕")
+                })
+            })
+        $("button").eq(2).click(function () {
+                 
+                 $("div").toggle()
+             })
+    </script>
+</body>
+</html>

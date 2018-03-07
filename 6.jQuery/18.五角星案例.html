@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul{
+            overflow: hidden;
+        }
+        li{
+            float: left;
+            width: 40px;
+            height: 50px;
+            color: red;
+            list-style: none;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <span>你的评分是：</span><span class="span"></span> 
+    </ul>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(window).ready(function(){
+            console.log($.fn.jquery)
+            var sxStart='★';
+            var noneStart="☆";
+            // 需求：
+            // 1.鼠标移上当前的五角星和之前的五角星都变成实心的五角星
+            $("ul li").on('mouseenter',function(){
+               $(this).html(sxStart).prevAll('li').html(sxStart).end().nextAll('li').html(noneStart)
+            })
+            // 2.鼠标点击当前的五角星，当前的五角星和之前的五角星都变成实心 其他为空心
+            $("ul li").on('click',function(){
+                //为当前li添加类名,在清除其他li
+                $(this).attr('class','current').siblings('li').removeAttr('class','current');
+                var liArr=document.getElementsByTagName('li');
+                for(var i=0;i<liArr.length;i++){
+                    liArr[i].index=i;
+                }
+                
+                $('span.span').html(this.index+1+'分')
+            })
+            // 3.鼠标移开当前的li上 之前的和后面的li都是
+            $("ul li").on('mouseleave',function(){
+                // 鼠标移除时所有的li都成为空心
+               $(this).text(noneStart).siblings('li').text(noneStart);
+                //让当前带有class和之前的成为实心
+                $('.current').text(sxStart).prevAll('li').text(sxStart);   
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: yellow;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <button>执行动画</button>
+    <div></div>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $("button").eq(0).click(function(){
+            var json={"top":"200","left":300,"width":400,"height":"400"}
+            var json1={"top":25,"left":0,"width":200,"height":"200","opacity":0.3}
+            $("div").animate(json,4000,function(){
+                 $("div").animate(json1,4000,function(){
+                    alert("所有动画都执行完毕")
+                })
+            })
+        })
+    </script>
+</body>
+</html>
